@@ -100,8 +100,8 @@ describe("anthropic-tool-search builtin extension", () => {
 			tools: Array<Record<string, unknown>>;
 		};
 
-		const regexTools = result.tools.filter((tool) => tool.name === "tool_search_tool_regex");
-		const bm25Tools = result.tools.filter((tool) => tool.name === "tool_search_tool_bm25");
+		const regexTools = result.tools.filter((tool) => tool["name"] === "tool_search_tool_regex");
+		const bm25Tools = result.tools.filter((tool) => tool["name"] === "tool_search_tool_bm25");
 		expect(regexTools).toHaveLength(1);
 		expect(bm25Tools).toHaveLength(1);
 		expect(bm25Tools[0]).toEqual({ type: "tool_search_tool_bm25_20251119", name: "tool_search_tool_bm25" });

@@ -36,7 +36,7 @@ function isToolSearchType(value: unknown): value is string {
 }
 
 function isNativeToolSearchTool(tool: ToolDefinition): boolean {
-	const name = tool.name;
+	const name = tool["name"];
 	return name === REGEX_TOOL_NAME || name === BM25_TOOL_NAME;
 }
 
@@ -47,7 +47,7 @@ function sanitizeTools(tools: unknown[]): ToolDefinition[] {
 			continue;
 		}
 
-		const isFunctionVariant = isNativeToolSearchTool(tool) && !isToolSearchType(tool.type);
+		const isFunctionVariant = isNativeToolSearchTool(tool) && !isToolSearchType(tool["type"]);
 		if (!isFunctionVariant) {
 			sanitized.push(tool);
 		}
@@ -88,11 +88,11 @@ export function addAnthropicToolSearchToPayload(api: Api | undefined, payload: u
 		return payload;
 	}
 
-	const tools = Array.isArray(payload.tools) ? payload.tools : [];
+	const tools = Array.isArray(payload["tools"]) ? payload["tools"] : [];
 	const sanitizedTools = sanitizeTools(tools);
 	const selectedTools = selectTools(mode);
 	for (const selectedTool of selectedTools) {
-		const exists = sanitizedTools.some((tool) => tool.name === selectedTool.name);
+		const exists = sanitizedTools.some((tool) => tool["name"] === selectedTool["name"]);
 		if (!exists) {
 			sanitizedTools.push(selectedTool);
 		}
