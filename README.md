@@ -26,15 +26,8 @@ It also appends a system-prompt section for Anthropic sessions when tool search 
 The package targets the [`pi`](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent) coding agent. Pi loads extensions from `~/.pi/agent/extensions/`, project `.pi/extensions/`, or via the `--extension` / `-e` CLI flag.
 
 ```bash
-# From npm (once published)
-pi install npm:pi-anthropic-tool-search
-
 # From git
 pi install git:github.com/code-yeongyu/pi-anthropic-tool-search
-
-# Manual placement
-git clone https://github.com/code-yeongyu/pi-anthropic-tool-search ~/.pi/agent/extensions/pi-anthropic-tool-search
-cd ~/.pi/agent/extensions/pi-anthropic-tool-search && npm install
 
 # Dev / one-shot test
 pi -e /path/to/pi-anthropic-tool-search/src/index.ts
